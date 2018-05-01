@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chaining Promises</title>
+</head>
+<body>
+  
+  <p>When you need to fire off more than one promise use 'Promise.all' and an array of promises and then use .then with it. 
+    Note: Fetch returns a promise.</p>
+  
+  <script>
+    const beersPromise = fetch('https://api.punkapi.com/v2/beers/');
+    const parisPromise = fetch('http://data.ratp.fr/api/datasets/1.0/search/?q=paris');
+    
+    Promise
+    .all([beersPromise, parisPromise])
+    .then(responses => {
+      return Promise.all(responses.map(res => res.json()))
+    })
+    .then(responses => {
+      console.log(responses);
+    });
+    
+  </script>
+</body>
+</html>

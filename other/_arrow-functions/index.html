@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Arrow Functions</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="box">
+      <h2>Code Bro</h2>
+      <p class="social">@social</p>
+    </div>
+  </div>
+
+  <p>One: When you use an arrow function the value of this is not rebound within the function. It is inherited from the parent scope (window)</p>
+  <p>Two: We cannot use an arrow function here if we want to toggle the classlist so we revert to an anonymous function. Now we want to close the box after half a second.</p>
+  <p>Three: Using a setTimeout results in an error 'Cannot read property 'toggle' of undefined' because 'this' is the window object.</p>
+  <p>Four: Using the self variable hack and setting 1.5 seconds. It works - but hacky.</p>
+  <p>Five: So we use an arrow function becuase it inherets the value of 'this' from the parent function.</p>
+  <p>Six: Enhance the animation to reverse the sequence on timeout by using variables and destructuring them in an if statement.</p>
+
+
+  <!-- <script data-sample="one">
+    const box = document.querySelector('.box');
+    box.addEventListener('click', function() {
+      console.log(this) 
+    });
+    // box.addEventListener('click', () => {
+    //   console.log(this)
+    // });
+  </script> -->
+
+<!-- <script data-sample="two">
+  const box = document.querySelector('.box');
+  box.addEventListener('click', function() {
+    this.classList.toggle('opening');
+  });
+</script> -->
+
+<!-- <script data-sample="three">
+  const box = document.querySelector('.box');
+  box.addEventListener('click', function() {
+    this.classList.toggle('opening');
+    setTimeout(function() {
+      // console.log(this)
+      this.classList.toggle('open');
+    });
+  });
+</script> -->
+
+<!-- <script data-sample="four">
+  const box = document.querySelector('.box');
+  box.addEventListener('click', function() {
+    var self = this;
+    this.classList.toggle('opening');
+    setTimeout(function() {
+      self.classList.toggle('open');
+    }, 1500);
+  });
+</script> -->
+
+<!-- <script data-sample="five">
+  const box = document.querySelector('.box');
+  box.addEventListener('click', function() {
+    this.classList.toggle('opening');
+    setTimeout(() => {
+      this.classList.toggle('open');
+    }, 1500);
+  });
+</script> -->
+
+<!-- <script data-sample="six">
+  const box = document.querySelector('.box');
+  box.addEventListener('click', function() {
+
+    let first = 'opening';
+    let second = 'open';
+
+    if (this.classList.contains(first)) {
+      [first, second] = [second, first];
+    }
+
+    this.classList.toggle(first);
+    setTimeout(() => {
+      this.classList.toggle(second);
+    }, 500);
+  });
+</script> -->
+
+</body>
+
+</html>
